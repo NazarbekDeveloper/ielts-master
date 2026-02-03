@@ -5,4 +5,4 @@
 ---
 **Dasturning ishlash jarayoni:**
 
-![Demo.gif](Assets\IeltsMasterDemo.gif)
+![Demo.gif](Assets/IeltsMasterDemo.gif)
