@@ -1,24 +1,33 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IeltsMaster;
 OveralBallCalculate();
-static void OveralBallCalculate()
+static bool IsBallValid(decimal ball)
 {
-    Console.WriteLine("Assalomu alaykum IELTS-MASTER dasturimizga xush kelibsiz ");
+    return (ball < 0 || ball > 9);
+}
+static void OveralBallCalculate()
+{   // Obyektlar
+    Printer print = new Printer();
+    Counter counter = new Counter();
 
-    System.Console.WriteLine("IELTS imtihonidagi 4 ta bo'lim bo'yicha ballaringizni kiriting: ");
+    print.PrintLine("Assalomu alaykum IELTS-MASTER dasturimizga xush kelibsiz ");
+
+    print.PrintLine("IELTS imtihonidagi 4 ta bo'lim bo'yicha ballaringizni kiriting: ");
     string[] ieltsSections = { "Reading", "Listening", "Writing", "Speaking" };
-    decimal yigindi = 0;
+
+
     for (int i = 0; i < ieltsSections.Length; i++)
     {
-        Console.Write($"{ieltsSections[i]} balingiz(0 - 9): ");
+        print.PrintLine($"{ieltsSections[i]} balingiz(0 - 9): ");
         decimal ball = decimal.Parse(Console.ReadLine());
-        if (ball < 0 || ball > 9)
+        if (IsBallValid(ball))
         {
-            System.Console.WriteLine($"{ieltsSections[i]} balini xato kiritdingiz. Qaytadan kiring..!!");
+            print.PrintLine($"{ieltsSections[i]} balini xato kiritdingiz. Qaytadan kiring..!!");
             i--;
             continue;
         }
-        yigindi += ball;
+        counter.BallQosh(ball);
     }
-    System.Console.WriteLine($"Sizning Overal balingiz: {yigindi/4}");
+    print.PrintLine($"Sizning Overal balingiz: {counter.YigindiQaytar()/ieltsSections.Length}");
 }
-
+Console.WriteLine("Assalomu alaykum xush kelibsiz bizninng dasturimizga bu dastur bugungi kundagi amaishlarni bajarishga sizga yaqindan ");
